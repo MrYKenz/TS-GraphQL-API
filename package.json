@@ -1,0 +1,21 @@
+{
+   "name": "ts-gql-api",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/node": "^12.12.21",
+      "nodemon": "^2.0.2",
+      "ts-node": "8.5.4",
+      "tslint": "^5.20.1",
+      "typescript": "3.7.3"
+   },
+   "dependencies": {
+      "graphql-yoga": "^1.18.3",
+      "pg": "^7.15.1",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.2.21"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts"
+   }
+}
