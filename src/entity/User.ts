@@ -1,18 +1,18 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryColumn, Column, BeforeInsert, BaseEntity} from "typeorm";
+import * as uuidv4 from "uuid/v4"; // prevents es export= error 
 
-@Entity()
-export class User {
+@Entity("users") // table name users to not conflict with postgres users table that already exists
+export class User extends BaseEntity {
+    // uuid to not expose number of records (security)
+    @PrimaryColumn("uuid")
+    id: string;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @Column("varchar", { length: 255 })
+    email: string;
 
-    @Column()
-    firstName: string;
+    @Column("text") // any lenght for hashed pswrd
+    password: string;
 
-    @Column()
-    lastName: string;
-
-    @Column()
-    age: number;
-
+    @BeforeInsert()
+    addID() {this.id = uuidv4()}
 }
