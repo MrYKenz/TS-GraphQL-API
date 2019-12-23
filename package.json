@@ -3,15 +3,20 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
+      "@types/bcryptjs": "^2.4.2",
+      "@types/jest": "^24.0.24",
       "@types/node": "^12.12.21",
       "@types/uuid": "^3.4.6",
       "gql2ts": "^1.10.1",
+      "jest": "^24.9.0",
       "nodemon": "^2.0.2",
+      "ts-jest": "^24.2.0",
       "ts-node": "8.5.4",
       "tslint": "^5.20.1",
       "typescript": "3.7.4"
    },
    "dependencies": {
+      "bcryptjs": "^2.4.3",
       "graphql-import": "^0.7.1",
       "graphql-yoga": "^1.18.3",
       "pg": "^7.15.1",
@@ -20,7 +25,12 @@
       "uuid": "^3.3.3"
    },
    "scripts": {
-      "start": "ts-node --files src/index.ts",
-      "gql-ts-types": "gql2ts src/typedefs.graphql -o src/resolvers/types/gqltypes.d.ts"
+      "start": "nodemon --exec ts-node --files src/index.ts",
+      "gql-ts-types": "gql2ts src/typedefs.graphql -o src/resolvers/types/gqltypes.d.ts",
+      "test": "jest"
+   },
+   "jest": {
+      "preset": "ts-jest",
+      "testEnvironment": "node"
    }
 }
