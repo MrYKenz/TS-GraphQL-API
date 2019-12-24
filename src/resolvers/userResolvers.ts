@@ -9,15 +9,21 @@ export const userResolvers: IResolver = {
     },
     Mutation: {
       register: async (_, { email, password }: GQL.IRegisterOnMutationArguments) => {
+        // check if user already exists with same email
+        const userExists: User | undefined = await User.findOne({ 
+          where: { email },
+          select: ["id"] // SQL search optimisation
+        });
+        if (userExists) {return `user already exists ${userExists.email}`}
+        // create user with hashed password
         const hashedPassword = await bcrypt.hash(password, 10);
         const userCreated = User.create({
           email,
           password: hashedPassword
         });
-        // result of saved User object once stored in the DB
-        const res: User = await userCreated.save();
-        
-        return `user created ${res.id} ${res.email}`;
+        // save user in DB and get result to return in GQL
+        const newUser: User = await userCreated.save();
+        return `user created ${newUser.id} ${newUser.email}`;
       },
     }
   }

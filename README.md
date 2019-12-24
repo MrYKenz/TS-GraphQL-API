@@ -7,7 +7,6 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 - GraphQL Yoga: Apollo Server/Express (API Middleware)
 - GraphQL Import: statically import GQL Schema files at build time (must be .graphql)
 - gql2ts: to create TS types from GraphQL Schema
-- uuid/v4: version 4 to create unique IDs as strings
 - jest/ts-jest: installed as dev dependancy to run tests in "./tests/"
 - grapql-request: installed as dev dependancy for testing queries and mutations against endpoint using jest
 
@@ -21,7 +20,9 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 ```
 - before testing with npm test (npx jest) run in psql:
 ```sql
-    c\ database
+    \c database
     delete from users;
 ``` 
-to clear users table in database so username is unique
+    - to clear users table in database so username is unique
+- **npm uninstall uuid and npm uninstall -D @types/uuid**
+    - TypeORM PrimaryGeneratedColumn can create uuids
