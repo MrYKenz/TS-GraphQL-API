@@ -3,7 +3,7 @@ import * as bcrypt from "bcryptjs";
 import { IResolver } from "./types/resolvertypes";
 import { User } from "../entity/User";
 
-export const resolvers: IResolver = {
+export const userResolvers: IResolver = {
     Query: {
       hello: (_, { name }: GQL.IHelloOnQueryArguments) => `Hello ${name || 'World'}`,
     },

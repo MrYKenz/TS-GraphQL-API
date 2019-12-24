@@ -3,7 +3,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import { importSchema } from 'graphql-import';
 import { createConnection } from 'typeorm';
 
-import { resolvers } from "./resolvers/resolver"
+import { resolvers } from "./resolvers"
 
 const typeDefs = importSchema(`${__dirname}/typedefs.graphql`);
 

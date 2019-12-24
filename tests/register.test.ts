@@ -2,7 +2,7 @@ import { request } from "graphql-request";
 import { User } from "../src/entity/User";
 import { createConnection } from "typeorm";
 
-const email = "JEST_TEST"; // must be unique
+const email = "JEST_TEST"; // SQL: delete from users;
 const password = "testing";
 
 const registerMutation = `mutation {
@@ -18,6 +18,6 @@ test("register user", async () => {
     await createConnection();
     const users = await User.find({ where: { email } });
     expect(users).toHaveLength(1);
-    // check password is hashed - not the same plain string
+    // check password is hashed - not the same as plain string
     expect(users[0].password).not.toEqual(password);
 });
