@@ -16,6 +16,7 @@ export const resolvers: IResolver = {
         });
         // result of saved User object once stored in the DB
         const res: User = await userCreated.save();
+        
         return `user created ${res.id} ${res.email}`;
       },
     }
