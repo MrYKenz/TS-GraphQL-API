@@ -26,3 +26,4 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
     - to clear users table in database so username is unique
 - **npm uninstall uuid and npm uninstall -D @types/uuid**
     - TypeORM PrimaryGeneratedColumn can create uuids
+- validate email and password on frontend & handle user already exists string
