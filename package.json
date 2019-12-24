@@ -1,7 +1,7 @@
 {
    "name": "ts-gql-api",
    "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "TypeScript GraphQL API",
    "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
       "@types/jest": "^24.0.24",
@@ -26,8 +26,8 @@
       "uuid": "^3.3.3"
    },
    "scripts": {
-      "start": "nodemon --exec ts-node --files src/index.ts",
-      "gql-ts-types": "gql2ts src/typedefs.graphql -o src/resolvers/types/gqltypes.d.ts",
+      "start": "nodemon --exec ts-node --files src/server.ts",
+      "create-types": "gql2ts src/typedefs.graphql -o src/resolvers/types/gqltypes.d.ts",
       "test": "jest"
    },
    "jest": {

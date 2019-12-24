@@ -12,6 +12,16 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 - grapql-request: installed as dev dependancy for testing queries and mutations against endpoint using jest
 
 ### Tasks:
-using *import * as* to avoid JS module import error (no default import) or set tsconfig "allowSyntheticDefaultImports": true
-use tslint-config-prettier?? tslint config file??
-include test folder in tsconfig file
+- using *import * as* to avoid JS module import error (no default import) or set tsconfig "allowSyntheticDefaultImports": true
+- use tslint-config-prettier?? tslint config file??
+- include test folder in tsconfig file?
+- when typedefs schema changed run gql2ts script: 
+```
+    npm create-types
+```
+- before testing with npm test (npx jest) run in psql:
+```sql
+    c\ database
+    delete from users;
+``` 
+to clear users table in database so username is unique
