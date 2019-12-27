@@ -1,5 +1,5 @@
 import {Entity, PrimaryColumn, Column, BaseEntity, BeforeInsert} from "typeorm";
-import * as uuidv4 from "uuid/v4";
+import { v4 } from "uuid";
 
 @Entity("users") // table name users to not conflict with postgres users table that already exists
 export class User extends BaseEntity {
@@ -13,8 +13,11 @@ export class User extends BaseEntity {
     @Column("text") // any lenght for hashed pswrd
     password: string;
 
+    @Column("boolean", { default: false })
+    approved: boolean;
+
     @BeforeInsert()
     addId() {
-        this.id = uuidv4();
+        this.id = v4();
     }
 }

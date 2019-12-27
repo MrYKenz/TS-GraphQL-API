@@ -4,6 +4,7 @@
    "description": "TypeScript GraphQL API",
    "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
+      "@types/ioredis": "^4.14.3",
       "@types/jest": "^24.0.24",
       "@types/node": "^12.12.21",
       "@types/uuid": "^3.4.6",
@@ -20,6 +21,7 @@
       "bcryptjs": "^2.4.3",
       "graphql-import": "^0.7.1",
       "graphql-yoga": "^1.18.3",
+      "ioredis": "^4.14.1",
       "pg": "^7.15.1",
       "reflect-metadata": "^0.1.13",
       "typeorm": "0.2.21",
