@@ -23,6 +23,7 @@ async (req, res) => {
     const key = req.params.key;
     const userID = await redis.get(key);
     userID && await User.update({id: userID}, {approved: true});
+    await redis.del(key)
     res.send("success") // change to redirect
 });
 
