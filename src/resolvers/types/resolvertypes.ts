@@ -5,7 +5,7 @@ export interface IResolver {
         [key: string]: (
             parent: any, 
             args: any, 
-            context: { redis: Redis, url: string}, 
+            context: { redis: Redis, url: string }, 
             info: any
         ) => any;
     };

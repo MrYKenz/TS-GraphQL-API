@@ -20,7 +20,7 @@ beforeAll(async () => {
         user.id, redis);
 });
 
-describe("confirmation email", () => {
+describe("Confirmation Link", () => {
 
     test("confirmation key created", async () => {
         const paths = url.split("/");
@@ -30,7 +30,7 @@ describe("confirmation email", () => {
     });
     test("confirmation link works", async () => {
         const res = await axios.get(url);
-        expect(res.data).toMatch("success");
+        expect(res.data).toMatch("approved");
     });
     test("approved user created", async () => {
         const approvedUser = await User.findOne({ where: { id: user.id }})

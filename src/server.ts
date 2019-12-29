@@ -3,6 +3,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import { createConnection } from 'typeorm';
 import { importSchema } from 'graphql-import';
 import * as Redis from 'ioredis';
+import "dotenv/config";
 
 const typeDefs = importSchema(`${__dirname}/typedefs.graphql`);
 import { resolvers } from "./resolvers";
@@ -24,7 +25,7 @@ async (req, res) => {
     const userID = await redis.get(key);
     userID && await User.update({id: userID}, {approved: true});
     await redis.del(key)
-    res.send("success") // change to redirect
+    res.send("approved") // change to redirect
 });
 
 // start server after connected to PSQL
