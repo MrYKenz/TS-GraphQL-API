@@ -2,7 +2,7 @@ import { createConnection } from "typeorm";
 import * as Redis from "ioredis";
 import axios from "axios";
 
-import { confirmEmailLink } from "../src/utils/confirmEmail";
+import { confirmEmailLink } from "../src/utils/approvalLink";
 import { User } from "../src/entity/User";
 
 let user: User;
