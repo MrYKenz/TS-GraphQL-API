@@ -31,7 +31,13 @@ name?: string | null;
 
 interface IMutation {
 __typename: "Mutation";
+login: string | null;
 register: string | null;
+}
+
+interface ILoginOnMutationArguments {
+email: string;
+password: string;
 }
 
 interface IRegisterOnMutationArguments {
