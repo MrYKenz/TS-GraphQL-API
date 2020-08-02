@@ -16,24 +16,30 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 
 ### :memo: Tasks:
 - ~~using *import * as* to avoid JS module no default import error~~ (or set tsconfig "allowSyntheticDefaultImports": true)
-- use tslint-config-prettier?? tslint config file??
 - ~~include test folder in tsconfig file~~
-- when typedefs schema changed run gql2ts script: 
+- optional: use tslint-config-prettier and tslint config file
+- Start redis server up before starting app in (linux or WSL) with:
+```
+    redis-server
+```
+- when typedefs schema is changed run gql2ts script with: 
 ```
     npm create-types
 ```
-- clear users table in database so username is unique before testing with npm test (npx jest) run in SQL Shell (psql) with user postgres:
+- run jest test scripts (npx jest --verbose) with:
+```
+    npm test
+```
+- if tests have been run already clear the users table in the database so that the test users are not present in the table (causing the username is unique validation to trigger) by running the following command in the SQL Shell or in psql (with user postgres found in the ormconfig file):
 ```sql
     \c database
     delete from users;
 ``` 
-- validate email and password on frontend & handle error stings returned from resolvers e.g. user already exists
-- Backend Validation for email and password
+- ~~backend validation for register and login in utils~~
 - Authentication using JWT:
-    - add jwt.sign to register resolver and Auth Util to decode JWT from context 
+    - add jwt.sign to register resolver and add an auth Util to decode JWT from context 
     - add it to protected routes - query/mutation resolvers
     - add to server.ts GraphQLServer contextCallback request.headers.param to context return object
-- Start redis server in linux with:
-```bash
-    redis-server
-```
+- front end to-do list:
+    - validate email and password for register & login on frontend
+    - handle error stings returned from resolvers e.g. user already exists

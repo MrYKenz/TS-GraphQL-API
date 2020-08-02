@@ -4,5 +4,7 @@ node_modules/
 build/
 tmp/
 temp/
+# redis dump file
 dump.rdb
+# environment vars
 .env
