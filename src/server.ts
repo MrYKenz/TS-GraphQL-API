@@ -8,6 +8,7 @@ import "dotenv/config";
 const typeDefs = importSchema(`${__dirname}/typedefs.graphql`);
 import { resolvers } from "./resolvers";
 import { User } from "./entity/User";
+
 const redis = new Redis(); // connect to redis
 
 // GQL endpoint created with yoga using contextCallback 
