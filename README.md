@@ -11,8 +11,10 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 - jest & ts-jest: installed as dev dependancy to run tests in "./tests/"
 - grapql-request: installed as dev dependancy for testing queries and mutations against endpoint using jest
 - ioredis: instead of using JWTs the prefered method to validate the user's email address was by comparing a session id (uuid) stored in redis by creating a temporary link using seperate Express Endpoint
-- sparkpost: to email users confirmation message with validation link made using key stored in redis
-- axios: is installed for testing but not as devDependancy incase its needed for full app
+- nodemailer: to email users confirmation message with validation link made using key stored in redis
+- express-session: to create user sessions and cookies for login
+- connect-redis: to store session data from express-session
+- axios: is installed for testing but not as a dev dependancy in case it's needed for full app
 
 ### :memo: Tasks:
 - ~~using *import * as* to avoid JS module no default import error~~ (or set tsconfig "allowSyntheticDefaultImports": true)

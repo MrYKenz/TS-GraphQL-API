@@ -18,7 +18,7 @@
 
 // });
 
-///////// SPARKPOST API KEY NOT FOUND \\\\\\\\\
+///////// Test with real SMTP Server\\\\\\\\\
 function sum(a: number, b: number): number {
     return a + b;
 }
