@@ -35,7 +35,8 @@ export const userResolvers: IResolver = {
         return `user created ${newUser.id} ${newUser.email}`;
       },
       login: async (_, 
-        { email, password }: GQL.ILoginOnMutationArguments
+        { email, password }: GQL.ILoginOnMutationArguments,
+        { session }
         ) => {
           const user = await User.findOne({ 
             where: { email }
@@ -45,6 +46,8 @@ export const userResolvers: IResolver = {
           if (!checkPassword) return "Password incorrect!";
           if (!user.approved) return `Email ${email} not verified, check your inbox!`;
           
+          session.userId = user.id;
+
           return `Login Successful!`
         }
     }

@@ -7,7 +7,7 @@ import { User } from "../src/entity/User";
 
 let user: User;
 let url: string;
-const redis = new Redis;
+const redis = new Redis({port: 6379});
 
 beforeAll(async () => {
     await createConnection();
@@ -16,8 +16,7 @@ beforeAll(async () => {
         password: "testing"
     }).save();
     user = newUser;
-    url = await confirmEmailLink("http://localhost:4000", 
-        user.id, redis);
+    url = await confirmEmailLink("http://localhost:4000", user.id, redis);
 });
 
 describe("Confirmation Link", () => {
