@@ -11,7 +11,6 @@
       "@types/jest": "^24.9.1",
       "@types/node": "^12.12.53",
       "@types/nodemailer": "^6.4.0",
-      "@types/sparkpost": "^2.1.4",
       "@types/uuid": "^3.4.9",
       "gql2ts": "^1.10.1",
       "graphql-request": "^1.8.2",
@@ -34,7 +33,6 @@
       "nodemailer": "^6.4.11",
       "pg": "^7.18.2",
       "reflect-metadata": "^0.1.13",
-      "sparkpost": "^2.1.4",
       "typeorm": "0.2.21",
       "uuid": "^3.4.0"
    },

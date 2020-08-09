@@ -42,7 +42,10 @@ server.express.use(
     })
 );
 
-// cors - if needed?
+const corsOptions = {
+    credentials: true,
+    origin: process.env.FRONT_END || "*",
+  }
 
 // express endpoint for confirmEmailLink sent to user
 server.express.get("/verification/:key", 
@@ -57,6 +60,6 @@ server.express.get("/verification/:key",
 // start server after connected to PSQL
 createConnection().then(()=> {
     console.log("Connected to DB");
-    server.start(() => 
+    server.start({cors: corsOptions, port: 4000}, () => 
     console.log('Server running on localhost:4000'));
 });
