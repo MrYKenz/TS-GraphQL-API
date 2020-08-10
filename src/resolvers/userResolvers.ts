@@ -7,7 +7,15 @@ import { sendEmail } from "../utils/sendEmail";
 
 export const userResolvers: IResolver = {
     Query: {
-      hello: (_, { name }: GQL.IHelloOnQueryArguments) => `Hello ${name || 'World'}`,
+      userInfo: async (_, __, {session}) => {
+        try {
+          const user = await User.findOne({ where: { id: session.userId }});
+          if (user) return `Hello ${user}!`;
+          else return `Error: no user with ${session.userId} found!`;
+        } catch (err) {
+            return err;
+        }
+      }
     },
     Mutation: {
       register: async (_, 
@@ -19,12 +27,10 @@ export const userResolvers: IResolver = {
           where: { email },
           select: ["id"] // SQL search optimisation
         });
-        if (userExists) return `user already exists ${userExists.email}`
-        // create user with hashed password
-        const hashedPassword = await bcrypt.hash(password, 12);
+        if (userExists) return `User already exists ${userExists.email}`
         const userCreated = User.create({
           email,
-          password: hashedPassword
+          password,
         });
         // save user in DB and get result to return in GQL
         const newUser: User = await userCreated.save();
@@ -32,7 +38,7 @@ export const userResolvers: IResolver = {
         const link = await confirmEmailLink(url, newUser.id, redis);
         const confirmEmail = await sendEmail(newUser.email, link);
         console.log(link, confirmEmail)
-        return `user created ${newUser.id} ${newUser.email}`;
+        return `User created ${newUser.id} ${newUser.email}`;
       },
       login: async (_, 
         { email, password }: GQL.ILoginOnMutationArguments,

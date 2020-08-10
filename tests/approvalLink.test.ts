@@ -12,7 +12,7 @@ const redis = new Redis({port: 6379});
 beforeAll(async () => {
     await createConnection();
     const newUser = await User.create({
-        email:"EMAIL_TEST",
+        email:"APPROVAL_TEST",
         password: "testing"
     }).save();
     user = newUser;

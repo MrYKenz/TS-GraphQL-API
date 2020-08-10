@@ -1,5 +1,6 @@
 import {Entity, PrimaryColumn, Column, BaseEntity, BeforeInsert} from "typeorm";
 import { v4 } from "uuid";
+import * as bcrypt from "bcryptjs";
 
 @Entity("users") // table name users to not conflict with postgres users table that already exists
 export class User extends BaseEntity {
@@ -19,5 +20,10 @@ export class User extends BaseEntity {
     @BeforeInsert()
     addId() {
         this.id = v4();
+    }
+    
+    @BeforeInsert()
+    async hashPW() {
+        this.password = await bcrypt.hash(this.password, 10);
     }
 }

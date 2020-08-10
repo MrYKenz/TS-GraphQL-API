@@ -22,11 +22,7 @@ column: number;
 
 interface IQuery {
 __typename: "Query";
-hello: string;
-}
-
-interface IHelloOnQueryArguments {
-name?: string | null;
+userInfo: string;
 }
 
 interface IMutation {
