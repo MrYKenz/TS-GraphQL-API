@@ -4,8 +4,8 @@ import { User } from "../src/entity/User";
 import * as Redis from 'ioredis';
 
 const redis = new Redis();
-const email: string = "LOGIN_TEST"; // replace with email
-const password: string = "testing";
+const email: string = "LOGIN@TEST.COM"; // replace with email
+const password: string = "testing123!";
 const registerMutation = `mutation {register(email: "${email}" password: "${password}")}`;
 
 beforeAll(async () => {

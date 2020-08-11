@@ -2,8 +2,8 @@ import { request } from "graphql-request";
 import { User } from "../src/entity/User";
 import { createConnection } from "typeorm";
 
-const email: string = "REGISTER_TEST"; // SQL: delete from users;
-const password: string = "testing";
+const email: string = "REGISTER@TEST.COM"; // SQL: delete from users;
+const password: string = "testing123!";
 
 const registerMutation: string = `mutation {
     register(email: "${email}" password: "${password}")

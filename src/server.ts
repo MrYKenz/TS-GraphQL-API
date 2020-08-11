@@ -15,8 +15,7 @@ import { User } from "./entity/User";
 
 const redis = new Redis({port: 6379}); // connect to redis (needs port for connect-redis session store)
 
-// GQL endpoint created with yoga using contextCallback 
-// to pass redis and request obj for server/host url
+// GQL endpoint created with yoga using contextCallback
 const server = new GraphQLServer({ typeDefs, resolvers, 
     context: ({request}) => ({ 
         redis, 

@@ -12,8 +12,8 @@ const redis = new Redis({port: 6379});
 beforeAll(async () => {
     await createConnection();
     const newUser = await User.create({
-        email:"APPROVAL_TEST",
-        password: "testing"
+        email:"APPROVAL@TEST.COM",
+        password: "testing123!"
     }).save();
     user = newUser;
     url = await confirmEmailLink("http://localhost:4000", user.id, redis);

@@ -5,8 +5,8 @@ import axios from "axios";
 import { User } from "../src/entity/User";
 
 // let user: User;
-const email: string = "USERINFO_TEST";
-const password: string = "testing";
+const email: string = "USERINFO@TEST.COM";
+const password: string = "testing123!";
 // const redis = new Redis({port: 6379});
 
 beforeAll(async () => {
@@ -27,8 +27,8 @@ describe("userInfo", () => {
     const loginMutation = (eml: string, pwd: string) => `mutation {login(email: "${eml}" password: "${pwd}")}`;
     const userQuery = "query {userInfo}";
     test("get current user", async () => {
-        await axios.post("http://localhost:4000", {query: loginMutation(email, password)}, {withCredentials: true});
-        const result = await axios.post("http://localhost:4000", {query: userQuery}, {withCredentials: true});
+        await axios.post("http://localhost:4000/", {query: loginMutation(email, password)}, {withCredentials: true});
+        const result = await axios.post("http://localhost:4000/", {query: userQuery}, {withCredentials: true});
         console.log(result);
     });
 });
