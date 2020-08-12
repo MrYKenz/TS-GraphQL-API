@@ -1,7 +1,7 @@
 import { userResolvers } from "./userResolvers";
-import { IResolverMap } from "./types/resolvertypes";
+import { IResolver } from "./types/resolvertypes";
 
-export const resolvers: IResolverMap = {
+export const resolvers: IResolver = {
     Query: {
         ...userResolvers.Query,
     },

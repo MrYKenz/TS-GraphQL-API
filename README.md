@@ -26,11 +26,13 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 ```
 - when typedefs schema is changed run gql2ts script with: 
 ```
-    npm create-types
+    npm run create-types
 ```
 - run jest test scripts (npx jest --verbose) with:
 ```
-    npm test
+    npm test 
+    # or for single test
+    npm test <name of test>
 ```
 - if tests have been run already clear the users table in the database so that the test users are not present in the table (causing the username is unique validation to trigger) by running the following command in the SQL Shell or in psql (with user postgres found in the ormconfig file):
 ```sql

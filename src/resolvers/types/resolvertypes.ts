@@ -4,31 +4,17 @@ export interface Session {
     userId?: string;
 }
 
-export type IResolver = (
-    parent: any, 
-    args: any, 
-    context: { 
-        redis: Redis;
-        url: string;
-        session: Session;
-    }, 
-    info: any
-) => any;
-
-export type GraphQLMiddleware = (
-    resolver: IResolver,
-    parent: any, 
-    args: any, 
-    context: { 
-        redis: Redis;
-        url: string;
-        session: Session;
-    }, 
-    info: any
-) => any;
-
-export interface IResolverMap {
+export interface IResolver {
     [key: string]: {
-        [key: string]: IResolver;
+        [key: string]: (
+            parent: any, 
+            args: any, 
+            context: { 
+                redis: Redis;
+                url: string;
+                session: Session;
+            }, 
+            info: any
+        ) => any;
     };
 }

@@ -1,12 +1,12 @@
 import * as bcrypt from "bcryptjs";
 
-import { IResolverMap } from "./types/resolvertypes";
+import { IResolver } from "./types/resolvertypes";
 import { User } from "../entity/User";
 import { confirmEmailLink } from "../utils/approvalLink";
 import { sendEmail } from "../utils/sendEmail";
 import { validateRegister, validateLogin } from "../utils/validation";
 
-export const userResolvers: IResolverMap = {
+export const userResolvers: IResolver = {
     Query: {
       authStatus: async (_, __, {session}) => {
           try {
@@ -14,7 +14,7 @@ export const userResolvers: IResolverMap = {
             if (user) return `Hello ${user.email}!`;
             else return `You are not logged in`;
           } catch (err) {
-              return err + " - error finding user";
+              return "Error: " + err;
           }
         }
     },
@@ -25,14 +25,14 @@ export const userResolvers: IResolverMap = {
         { redis, url }
         ) => {
           const validationFailed = validateRegister(email, password);
-          if (validationFailed) throw new Error(validationFailed);
+          if (validationFailed) return "Error: " + validationFailed;
 
           // check if user already exists with same email
           const userExists = await User.findOne({ 
             where: { email },
             select: ["id"] // SQL search optimisation
           });
-          if (userExists) return `User already exists ${userExists.email}`
+          if (userExists) return `Error: User already exists ${email}`
 
           // create user obj and store in DB
           const userCreated = User.create({ email, password });
@@ -42,7 +42,7 @@ export const userResolvers: IResolverMap = {
           const link = await confirmEmailLink(url, newUser.id, redis);
           const confirmEmail = await sendEmail(newUser.email, link);
           console.log(link, confirmEmail);
-          return `User created ${newUser.id} ${newUser.email}`;
+          return `Created user ${newUser.email} Successfully`;
       },
 
       login: async (_, 
@@ -50,20 +50,20 @@ export const userResolvers: IResolverMap = {
         { session }
         ) => {
           const validationFailed = validateLogin(email, password);
-          if (validationFailed) throw new Error(validationFailed);
+          if (validationFailed) return "Error: " + validationFailed;
 
           const user = await User.findOne({ 
             where: { email }
           });
 
-          if (!user) return `User ${email} does not exist!`; 
+          if (!user) return `Error: User ${email} does not exist!`; 
           const checkPassword = await bcrypt.compare(password, user.password);
-          if (!checkPassword) return "Password incorrect!";
-          if (!user.approved) return `Email ${email} not verified, check your inbox!`;
+          if (!checkPassword) return "Error: Password incorrect!";
+          if (!user.approved) return `Error: Email ${email} not verified, check your inbox!`;
           
           session.userId = user.id;
 
-          return `Login Successful!`
+          return `Logged in ${user.email} Successfully!`
         }
     }
   }
