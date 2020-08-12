@@ -22,7 +22,7 @@ column: number;
 
 interface IQuery {
 __typename: "Query";
-userInfo: string;
+authStatus: string;
 }
 
 interface IMutation {

@@ -38,10 +38,8 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
     delete from users;
 ``` 
 - ~~backend validation for register and login in utils~~
-- Authentication using JWT:
-    - add jwt.sign to register resolver and add an auth Util to decode JWT from context 
-    - add it to protected routes - query/mutation resolvers
-    - add to server.ts GraphQLServer contextCallback request.headers.param to context return object
+- authentication middleware
+- tests for validation of register and login routes / resolvers
 - front end to-do list:
     - validate email and password for register & login on frontend
     - handle error stings returned from resolvers e.g. user already exists

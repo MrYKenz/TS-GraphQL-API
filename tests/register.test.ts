@@ -3,7 +3,7 @@ import { User } from "../src/entity/User";
 import { createConnection } from "typeorm";
 
 const email: string = "REGISTER@TEST.COM"; // SQL: delete from users;
-const password: string = "testing123!";
+const password: string = "Testing123!";
 
 const registerMutation: string = `mutation {
     register(email: "${email}" password: "${password}")

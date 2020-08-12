@@ -13,7 +13,7 @@ beforeAll(async () => {
     await createConnection();
     const newUser = await User.create({
         email:"APPROVAL@TEST.COM",
-        password: "testing123!"
+        password: "Testing123!"
     }).save();
     user = newUser;
     url = await confirmEmailLink("http://localhost:4000", user.id, redis);

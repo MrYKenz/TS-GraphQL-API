@@ -12,15 +12,25 @@ const RedisStore = connectRedis(session);
 const typeDefs = importSchema(`${__dirname}/typedefs.graphql`);
 import { resolvers } from "./resolvers";
 import { User } from "./entity/User";
+import { authMiddleware } from "./utils/authMiddleware";
 
 const redis = new Redis({port: 6379}); // connect to redis (needs port for connect-redis session store)
 
+const protectedRoutes = {
+    Query: {
+      authStatus: authMiddleware,
+    },
+}
 // GQL endpoint created with yoga using contextCallback
-const server = new GraphQLServer({ typeDefs, resolvers, 
+const server = new GraphQLServer({ 
+    typeDefs, 
+    resolvers,
+    middlewares: [protectedRoutes],
     context: ({request}) => ({ 
         redis, 
         url: request.protocol + "://" + request.get("host"),
-        session: request.session
+        session: request.session,
+        auth: request.headers.authorization
     }),
 });
 

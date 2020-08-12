@@ -1,22 +1,22 @@
 import * as bcrypt from "bcryptjs";
 
-import { IResolver } from "./types/resolvertypes";
+import { IResolverMap } from "./types/resolvertypes";
 import { User } from "../entity/User";
 import { confirmEmailLink } from "../utils/approvalLink";
 import { sendEmail } from "../utils/sendEmail";
 import { validateRegister, validateLogin } from "../utils/validation";
 
-export const userResolvers: IResolver = {
+export const userResolvers: IResolverMap = {
     Query: {
-      userInfo: async (_, __, {session}) => {
-        try {
-          const user = await User.findOne({ where: { id: session.userId }});
-          if (user) return `Hello ${user.email}!`;
-          else return `You are not logged in`;
-        } catch (err) {
-            return err + " - error finding user";
+      authStatus: async (_, __, {session}) => {
+          try {
+            const user = await User.findOne({ where: { id: session.userId }});
+            if (user) return `Hello ${user.email}!`;
+            else return `You are not logged in`;
+          } catch (err) {
+              return err + " - error finding user";
+          }
         }
-      }
     },
 
     Mutation: {
