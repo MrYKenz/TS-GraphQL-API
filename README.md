@@ -17,7 +17,7 @@ TSNode GraphQL API made using Graphql Yoga with Apollo Server over Express and T
 - axios: is installed for testing but not as a dev dependancy in case it's needed for full app
 
 ### :memo: Tasks:
-- ~~using *import * as* to avoid JS module no default import error~~ (or set tsconfig "allowSyntheticDefaultImports": true)
+- ~~using *import * as* to avoid JS module no default import error (or set tsconfig "allowSyntheticDefaultImports": true)~~ using "esModuleInterop": true 
 - ~~include test folder in tsconfig file~~
 - optional: use tslint-config-prettier and tslint config file
 - Start redis server up before starting app in (linux or WSL) with:

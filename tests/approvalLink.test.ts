@@ -1,5 +1,5 @@
 import { createConnection } from "typeorm";
-import * as Redis from "ioredis";
+import Redis from "ioredis";
 import axios from "axios";
 
 import { confirmEmailLink } from "../src/utils/approvalLink";

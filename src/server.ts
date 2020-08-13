@@ -2,10 +2,11 @@ import "reflect-metadata";
 import { GraphQLServer } from "graphql-yoga";
 import { createConnection } from "typeorm";
 import { importSchema } from "graphql-import";
-import * as session from "express-session";
-import * as Redis from "ioredis";
-import * as connectRedis from "connect-redis";
-import * as dotenv from "dotenv"; dotenv.config();
+import helmet from "helmet";
+import session from "express-session";
+import Redis from "ioredis";
+import connectRedis from "connect-redis";
+import dotenv from "dotenv"; dotenv.config();
 
 const RedisStore = connectRedis(session);
 
@@ -34,6 +35,7 @@ const server = new GraphQLServer({
     }),
 });
 
+server.express.use(helmet());
 // cookies for authentication using express-session
 server.express.use(
     session({

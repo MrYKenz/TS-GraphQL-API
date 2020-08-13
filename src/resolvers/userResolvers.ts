@@ -1,4 +1,4 @@
-import * as bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 import { IResolver } from "./types/resolvertypes";
 import { User } from "../entity/User";

@@ -1,7 +1,7 @@
 import { request } from "graphql-request";
 import { createConnection } from "typeorm";
 import { User } from "../src/entity/User";
-import * as Redis from 'ioredis';
+import Redis from 'ioredis';
 
 const redis = new Redis();
 const email: string = "LOGIN@TEST.COM"; // replace with email
