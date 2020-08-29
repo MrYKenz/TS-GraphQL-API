@@ -8,3 +8,4 @@ temp/
 dump.rdb
 # environment vars
 .env
+dist/
